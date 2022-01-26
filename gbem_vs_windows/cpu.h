@@ -43,5 +43,5 @@ typedef void (*IN_PROC)(cpu_context*);
 
 IN_PROC inst_get_processor(in_type type);
 
-#define CPU_FLAG_Z BIT(ctx.regs.f, 7)
-#define CPU_FLAG_C BIT(ctx.regs.f, 4)
+#define CPU_FLAG_Z BIT(ctx.regs.f, 7)? true : false
+#define CPU_FLAG_C BIT(ctx.regs.f, 4)? true : false
