@@ -1,0 +1,3 @@
+﻿  check_gbe.c
+check_gbe.obj : error LNK2019: unresolved external symbol _cpu_step referenced in function _test_nothing_fn
+C:\Users\Hp\source\repos\gbem_vs_windows\Debug\tests.exe : fatal error LNK1120: 1 unresolved externals

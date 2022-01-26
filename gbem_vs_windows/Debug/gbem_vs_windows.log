@@ -1,0 +1,4 @@
+﻿  cart.c
+C:\Users\Hp\source\repos\gbem_vs_windows\gbem_vs_windows\cart.c(2,32): warning C4081: expected 'newline'; found ')'
+cpu_proc.obj : error LNK2019: unresolved external symbol _check_cond referenced in function _proc_jp
+C:\Users\Hp\source\repos\gbem_vs_windows\Debug\gbem_vs_windows.exe : fatal error LNK1120: 1 unresolved externals
