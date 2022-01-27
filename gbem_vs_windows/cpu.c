@@ -15,17 +15,16 @@ static void fetch_instruction()
     ctx.cur_opcode = bus_read(ctx.regs.pc++);
     ctx.cur_inst = instruction_by_opcode(ctx.cur_opcode);
 
-    if (ctx.cur_inst == NULL)
-    {
-        printf("Unknown Instruction! %02X\n", ctx.cur_opcode);
-        exit(-7);
-    }
+    
 }
 
 static  void fetch_data()
 {
     ctx.mem_dest = 0;
     ctx.dest_is_mem = false;
+
+    if (ctx.cur_inst == NULL)
+        return;
 
     switch (ctx.cur_inst->mode)
     {
@@ -65,8 +64,14 @@ static  void fetch_data()
 
 static void execute()
 {
-    printf("Executing Instruction: %02X PC: %04X\n", ctx.cur_opcode, ctx.regs.pc);
-    printf("not executing yet....\n");
+    IN_PROC proc = inst_get_processor(ctx.cur_inst->type);
+
+    if (!proc)
+    {
+        printf("something happening in execute shit!!");
+    }
+
+    proc(&ctx);
 }
 
 bool cpu_step()
@@ -75,6 +80,16 @@ bool cpu_step()
     {
         fetch_instruction();
         fetch_data();
+
+        printf("Executing Instruction: %02X with data, %02X, PC: %04X\n", ctx.cur_opcode, ctx.fetched_data, ctx.regs.pc);
+
+       
+        if (ctx.cur_inst == NULL)
+        {
+            printf("Unknown Instruction! %02X\n", ctx.cur_opcode);
+            exit(-7);
+        }
+
         execute();
     }
     return true;

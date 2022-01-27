@@ -140,15 +140,12 @@ bool cart_load(char *cart)
 {
     snprintf(ctx.filename, sizeof(ctx.filename), "%s", cart);
 
-    FILE* fp;
-#ifdef WIN32
-    errno_t err;
-    if (err = fopen_s(&fp, cart, "r"))
+    FILE* fp = NULL;
+    
+    errno_t err = fopen_s(&fp, cart, "r");
+
+    if (!fp)
     {
-#else
-    if (fp = fopen(fp, "r"))
-    {
-#endif // WIN32
         printf("Failed to open: %s\n", cart);
         return false;
     }
@@ -176,7 +173,7 @@ bool cart_load(char *cart)
     printf("\t ROM Vers : %2.2X\n", ctx.header->version);
 
     u16 x = 0;
-    for (u16 i = 0x0134; i <= 0x014C; i++)
+    for (u16 i = 0x0134; i <= 0x014D; i++)
     {
         x = x - ctx.rom_data[i] - 1;
     }
@@ -189,7 +186,7 @@ bool cart_load(char *cart)
 u8 cart_read(u16 address)
 {
     //for now, ROM_ONLY supported...
-    printf("returning: %02X", ctx.rom_data[address]);
+    printf("returning: %02X\n", ctx.rom_data[address]);
     return ctx.rom_data[address];
 }
 

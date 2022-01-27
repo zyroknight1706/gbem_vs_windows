@@ -26,7 +26,7 @@ emu_context *get_emu_context()
 
 void delay(u32 ms)
 {
-    SDL_Delay(ms);
+    //SDL_Delay(ms);
 }
 
 int emu_run(int argc, char **argv)
@@ -46,7 +46,7 @@ int emu_run(int argc, char **argv)
 
     printf("Cart loaded..\n");
 
-    SDL_Init(SDL_INIT_VIDEO);
+    //SDL_Init(SDL_INIT_VIDEO);
     printf("SDL INIT\n");
     //TTF_Init();
     printf("TTF INIT\n");
